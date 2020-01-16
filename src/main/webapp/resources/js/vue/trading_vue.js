@@ -1,557 +1,1033 @@
+"use strict";
 var trading_vue = trading_vue || {}
 trading_vue = {
-	trading_body : x=>{
-		return '<body style="width: auto; height: 900px;">'+
-'  <div id="main_div" border="2" bordercolor="black"      style="width: 1500px; height: 600px;">'+
-'     <div id="d_one" style="width: 975px; height: 300px; overflow: auto; background-color: white; float: left;">'+
-'        <table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: #FBF8EF; text-align: center;" >'+
-'               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">'+
-'                 <td>관심</td>'+
-'                 <td colspan="2">주도업종</td>'+
-'                 <td>순위</td>'+
-'                 <td>테마</td>'+
-'                 <td colspan="2">외국인/기관</td>'+
-'                 <td>추정</td>'+
-'                 <td>시장별</td>'+
-'                 <td colspan="2">투자자별</td>'+
-'                 <td>체결</td>'+
-'                 <td>잔고</td>'+
-'                 <td>예수금</td>'+
-'                 <td>일지</td>'+
-'               </tr>'+
-'               <tr id="click_event2" style="width: 100%; height: 5%;">'+
-'                <td colspan="3">'+
-'                <input  type="radio" name="kospi" value="코스피">코스피'+
-'                <input type="radio" name="kosdak" value="코스닥">코스닥'+
-'                </td>'+
-'                <!-- <td colspan="2">코스피</td>'+
-'                <td colspan="2">코스닥</td> -->'+
-'                <td colspan="2">시가총액</td>'+
-'                <td colspan="3"><input type="date"></td>'+
-'                <td style="text-align: center;">~</td>'+
-'                <td colspan="3"><input type="date"></td>'+
-'               </tr>'+
-'               <tr border="1"; bordercolor="black"; style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">'+
-'                <!-- 주도업종, 코스피일때 화면 -->'+
-'                <td colspan="3" rowspan="2">업종명</td>'+
-'                <td colspan="4" style="background-color:skyblue">시작일</td>'+
-'                <td colspan="4" style="background-color:pink">종료일</td>'+
-'                <td colspan="3" rowspan="2">상승률</td>'+
-'            </tr>'+
-'               <tr border="1"; bordercolor="black"; style="width: 100%; height: 5%;  background-color: #E0E6F8;">'+
-'                <td colspan="2">시가총액(억원)</td>'+
-'                <td colspan="2">비중</td>'+
-'                <td colspan="2">시가총액(억원)</td>'+
-'                <td colspan="2">비중</td>'+
-'               </tr>'+
-'               <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">KOSPI</td>'+
-'                <td colspan="2" style="text-align: center;">14,508,528</td>'+
-'                <td colspan="2" style="text-align: center;">67.56</td>'+
-'                <td colspan="2" style="text-align: center;">15,050,353</td>'+
-'                <td colspan="2" style="text-align: center;">70.08</td>'+
-'                <td colspan="3" style="text-align: left;">3.73</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">대 형 주</td>'+
-'                <td colspan="2" style="text-align: center;">11.209.185</td>'+
-'                <td colspan="2" style="text-align: center;">52.20</td>'+
-'                <td colspan="2" style="text-align: center;">11,682,573</td>'+
-'                <td colspan="2" style="text-align: center;">54.40</td>'+
-'                <td colspan="3" style="text-align: left;">4.22</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">중 형 주</td>'+
-'                <td colspan="2" style="text-align: center;">1,582,889</td>'+
-'                <td colspan="2" style="text-align: center;">7.37</td>'+
-'                <td colspan="2" style="text-align: center;">1,593,438</td>'+
-'                <td colspan="2" style="text-align: center;">7.42</td>'+
-'                <td colspan="3" style="text-align: left;">0.67</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">소 형 주</td>'+
-'                <td colspan="2" style="text-align: center;">641,111</td>'+
-'                <td colspan="2" style="text-align: center;">2.99</td>'+
-'                <td colspan="2" style="text-align: center;">648,321</td>'+
-'                <td colspan="2" style="text-align: center;">3.02</td>'+
-'                <td colspan="3" style="text-align: left;">1.12</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">음식료업</td>'+
-'                <td colspan="2" style="text-align: center;">235,907</td>'+
-'                <td colspan="2" style="text-align: center;">1.10</td>'+
-'                <td colspan="2" style="text-align: center;">236,739</td>'+
-'                <td colspan="2" style="text-align: center;">1.10</td>'+
-'                <td colspan="3" style="text-align: left;">0.35</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">섬유의복</td>'+
-'                <td colspan="2" style="text-align: center;">58,770</td>'+
-'                <td colspan="2" style="text-align: center;">0.27</td>'+
-'                <td colspan="2" style="text-align: center;">57,965</td>'+
-'                <td colspan="2" style="text-align: center;">0.27</td>'+
-'                <td colspan="3" style="text-align: left;">-1.37</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">종이목재</td>'+
-'                <td colspan="2" style="text-align: center;">28,664</td>'+
-'                <td colspan="2" style="text-align: center;">0.13</td>'+
-'                <td colspan="2" style="text-align: center;">28,707</td>'+
-'                <td colspan="2" style="text-align: center;">0.27</td>'+
-'                <td colspan="3" style="text-align: left;">0.15</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">화 학</td>'+
-'                <td colspan="2" style="text-align: center;">1,465,365</td>'+
-'                <td colspan="2" style="text-align: center;">6.82</td>'+
-'                <td colspan="2" style="text-align: center;">1,476,617</td>'+
-'                <td colspan="2" style="text-align: center;">6.88</td>'+
-'                <td colspan="3" style="text-align: left;">0.77</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">의 약 품</td>'+
-'                <td colspan="2" style="text-align: center;">729,802</td>'+
-'                <td colspan="2" style="text-align: center;">3.40</td>'+
-'                <td colspan="2" style="text-align: center;">726,145</td>'+
-'                <td colspan="2" style="text-align: center;">3.38</td>'+
-'                <td colspan="3" style="text-align: left;">-0.50</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">비금속광물</td>'+
-'                <td colspan="2" style="text-align: center;">105,834</td>'+
-'                <td colspan="2" style="text-align: center;">0.49</td>'+
-'                <td colspan="2" style="text-align: center;">107,060</td>'+
-'                <td colspan="2" style="text-align: center;">0.50</td>'+
-'                <td colspan="3" style="text-align: left;">1.16</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">철강금속</td>'+
-'                <td colspan="2" style="text-align: center;">407,381</td>'+
-'                <td colspan="2" style="text-align: center;">1.90</td>'+
-'                <td colspan="2" style="text-align: center;">421,103</td>'+
-'                <td colspan="2" style="text-align: center;">1.96</td>'+
-'                <td colspan="3" style="text-align: left;">3.37</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">기 계</td>'+
-'                <td colspan="2" style="text-align: center;">193,319</td>'+
-'                <td colspan="2" style="text-align: center;">0.90</td>'+
-'                <td colspan="2" style="text-align: center;">201,018</td>'+
-'                <td colspan="2" style="text-align: center;">0.94</td>'+
-'                <td colspan="3" style="text-align: left;">3.98</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">전기전자</td>'+
-'                <td colspan="2" style="text-align: center;">4,532,655</td>'+
-'                <td colspan="2" style="text-align: center;">21.11</td>'+
-'                <td colspan="2" style="text-align: center;">4,901,824</td>'+
-'                <td colspan="2" style="text-align: center;">22.83</td>'+
-'                <td colspan="3" style="text-align: left;">8.14</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">의료정밀</td>'+
-'                <td colspan="2" style="text-align: center;">25,558</td>'+
-'                <td colspan="2" style="text-align: center;">0.12</td>'+
-'                <td colspan="2" style="text-align: center;">25,898</td>'+
-'                <td colspan="2" style="text-align: center;">0.12</td>'+
-'                <td colspan="3" style="text-align: left;">1.33</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">운수장비</td>'+
-'                <td colspan="2" style="text-align: center;">1,046,411</td>'+
-'                <td colspan="2" style="text-align: center;">4.87</td>'+
-'                <td colspan="2" style="text-align: center;">1,066,367</td>'+
-'                <td colspan="2" style="text-align: center;">4.97</td>'+
-'                <td colspan="3" style="text-align: left;">1.91</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">유 통 업</td>'+
-'                <td colspan="2" style="text-align: center;">636,171</td>'+
-'                <td colspan="2" style="text-align: center;">2.96</td>'+
-'                <td colspan="2" style="text-align: center;">646,700</td>'+
-'                <td colspan="2" style="text-align: center;">3.01</td>'+
-'                <td colspan="3" style="text-align: left;">1.65</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">전기가스</td>'+
-'                <td colspan="2" style="text-align: center;">237,302</td>'+
-'                <td colspan="2" style="text-align: center;">1.11</td>'+
-'                <td colspan="2" style="text-align: center;">232,772</td>'+
-'                <td colspan="2" style="text-align: center;">1.08</td>'+
-'                <td colspan="3" style="text-align: left;">-1.91</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">건 설 업</td>'+
-'                <td colspan="2" style="text-align: center;">199,146</td>'+
-'                <td colspan="2" style="text-align: center;">0.93</td>'+
-'                <td colspan="2" style="text-align: center;">205,592</td>'+
-'                <td colspan="2" style="text-align: center;">0.96</td>'+
-'                <td colspan="3" style="text-align: left;">3.24</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">운수창고</td>'+
-'                <td colspan="2" style="text-align: center;">218,497</td>'+
-'                <td colspan="2" style="text-align: center;">1.02</td>'+
-'                <td colspan="2" style="text-align: center;">225,167</td>'+
-'                <td colspan="2" style="text-align: center;">1.05</td>'+
-'                <td colspan="3" style="text-align: left;">3.05</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">통 신 업</td>'+
-'                <td colspan="2" style="text-align: center;">327,785</td>'+
-'                <td colspan="2" style="text-align: center;">1.53</td>'+
-'                <td colspan="2" style="text-align: center;">330,534</td>'+
-'                <td colspan="2" style="text-align: center;">1.54</td>'+
-'                <td colspan="3" style="text-align: left;">0.84</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">금 융 업</td>'+
-'                <td colspan="2" style="text-align: center;">2,128,023</td>'+
-'                <td colspan="2" style="text-align: center;">9.91</td>'+
-'                <td colspan="2" style="text-align: center;">2,192,675</td>'+
-'                <td colspan="2" style="text-align: center;">10.21</td>'+
-'                <td colspan="3" style="text-align: left;">3.04</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">은 행</td>'+
-'                <td colspan="2" style="text-align: center;">69,688</td>'+
-'                <td colspan="2" style="text-align: center;">0.32</td>'+
-'                <td colspan="2" style="text-align: center;">72,008</td>'+
-'                <td colspan="2" style="text-align: center;">0.34</td>'+
-'                <td colspan="3" style="text-align: left;">3.33</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">증 권</td>'+
-'                <td colspan="2" style="text-align: center;">216,576</td>'+
-'                <td colspan="2" style="text-align: center;">1.01</td>'+
-'                <td colspan="2" style="text-align: center;">220,824</td>'+
-'                <td colspan="2" style="text-align: center;">1.03</td>'+
-'                <td colspan="3" style="text-align: left;">1.96</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">보 험 업</td>'+
-'                <td colspan="2" style="text-align: center;">427,148</td>'+
-'                <td colspan="2" style="text-align: center;">1.99</td>'+
-'                <td colspan="2" style="text-align: center;">442,751</td>'+
-'                <td colspan="2" style="text-align: center;">2.06</td>'+
-'                <td colspan="3" style="text-align: left;">3.65</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">서비스업</td>'+
-'                <td colspan="2" style="text-align: center;">1,271,848</td>'+
-'                <td colspan="2" style="text-align: center;">5.92</td>'+
-'                <td colspan="2" style="text-align: center;">1,294,729</td>'+
-'                <td colspan="2" style="text-align: center;">6.03</td>'+
-'                <td colspan="3" style="text-align: left;">1.80</td>'+
-'          </tr>'+
-'          <tr style="width: 100%;">'+
-'                <td colspan="3" style="text-align: left;">제 조 업</td>'+
-'                <td colspan="2" style="text-align: center;">9,004,104</td>'+
-'                <td colspan="2" style="text-align: center;">41.93</td>'+
-'                <td colspan="2" style="text-align: center;">9,421,881</td>'+
-'                <td colspan="2" style="text-align: center;">43.87</td>'+
-'                <td colspan="3" style="text-align: left;">4.64</td>'+
-'          </tr>'+
-'             </table>'+
-'     </div>    '+
-'     <div id="d_two" style="width: 525px; height: 420px; overflow: auto; background-color: #FBF8EF; float: right;">'+
-'        <table id="tab2" border="1" bordercolor="black" style="width: 100%; height: 100%; text-align: center;">'+
-'        <tr style="background-color: #EFEFFB">'+
-'         <!-- 현재가 -->'+
-'            <td>현재가</td>'+
-'            <td>호가</td>'+
-'            <td>업종</td>'+
-'            <td><input type="text" name="stockcode" value="삼성전자"></td>'+
-'            <td><button>검색</button></td>'+
-'            <td>005930</td>'+
-'          </tr>'+
-'          <tr style="background-color: #EFEFFB">'+
-'            <td colspan="5">신고가 | KOSPI2000 | 전기전자 | 대출70%</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">현재가</td>'+
-'            <td colspan="2">현재가 54,700</td>'+
-'            <td style="background-color: #E0E6F8">상한가</td>'+
-'            <td>상한가 71,100</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">대비</td>'+
-'            <td colspan="2">0</td>'+
-'            <td style="background-color: #E0E6F8">하한가</td>'+
-'            <td>하한가 38,300</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">등락률</td>'+
-'            <td colspan="2">0</td>'+
-'            <td style="background-color: #E0E6F8">제한폭</td>'+
-'            <td>제한폭 16,400</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">매도호가</td>'+
-'            <td colspan="2">54,700</td>'+
-'            <td style="background-color: #E0E6F8">호가단위</td>'+
-'            <td>100</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">매수호가</td>'+
-'            <td colspan="2">54,600</td>'+
-'            <td style="background-color: #E0E6F8">액면가</td>'+
-'            <td>100(원)</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">시가</td>'+
-'            <td colspan="2">54,500</td>'+
-'            <td style="background-color: #E0E6F8">대용가</td>'+
-'            <td>43,760</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">고가</td>'+
-'            <td colspan="2">54,900</td>'+
-'            <td style="background-color: #E0E6F8">자본금</td>'+
-'            <td>7,780(억원)</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">저가</td>'+
-'            <td colspan="2">54,300</td>'+
-'            <td style="background-color: #E0E6F8">총주식수</td>'+
-'            <td>5,969,782,550</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">전일종가</td>'+
-'            <td colspan="2">54,700</td>'+
-'            <td style="background-color: #E0E6F8">외인한도</td>'+
-'            <td>5,969,782,550</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">전일거래량</td>'+
-'            <td colspan="2">18,120,261</td>'+
-'            <td style="background-color: #E0E6F8">외인가능</td>'+
-'            <td>2,560,295,873</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">거래량</td>'+
-'            <td colspan="2">11,512,405</td>'+
-'            <td style="background-color: #E0E6F8">외인취득</td>'+
-'            <td>57.11</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">거래대금</td>'+
-'            <td colspan="2">630,059(백만)</td>'+
-'            <td style="background-color: #E0E6F8">외인매수</td>'+
-'            <td>53,964</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">시가총액</td>'+
-'            <td colspan="2">3,265,471(억)</td>'+
-'            <td style="background-color: #E0E6F8">일반(20%)</td>'+
-'            <td>신용가능</td>'+
-'          </tr>'+
-'          <tr>'+
-'            <td style="background-color: #E0E6F8">예상체결가</td>'+
-'            <td colspan="2"> </td>'+
-'            <td style="background-color: #E0E6F8">예상체결량</td>'+
-'            <td> </td>'+
-'          </tr>'+
-'      </table>'+
-'     </div>'+
-'     <div id="d_three" style="width: 975px; height: 300px; overflow: auto; float: left; background-color: #FBF8EF">'+
-'        <table id="tab3" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">'+
-'          <tr style=" height: 10px; background-color: #EFEFFB;">'+
-'            <td colspan="2">시간별</td>'+
-'            <td colspan="2">일자별</td>'+
-'            <td colspan="2">차트</td>'+
-'            <td colspan="3">외국인/기관</td>'+
-'            <td colspan="2">거래원</td>'+
-'            <td colspan="2">신용</td>'+
-'            <td colspan="2">시황</td>'+
-'            <td colspan="2">종목시황</td>'+
-'            <td colspan="2">매수</td>'+
-'            <td colspan="2">매도</td>'+
-'            <td colspan="2">정정</td>'+
-'            <td colspan="2">취소</td>'+
-'          </tr>'+
-'          <tr style="height: 20px; background-color: #E0E6F8; ">'+
-'            <td colspan="3">시간대별</td>'+
-'            <td colspan="3">현재가</td>'+
-'            <td colspan="3">전일대비</td>'+
-'            <td colspan="3">등락률</td>'+
-'            <td colspan="3">체결량</td>'+
-'            <td colspan="3">거래량</td>'+
-'            <td colspan="3">체결강도</td>'+
-'            <td colspan="3">매도호가</td>'+
-'            <td colspan="3">매수호가</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:57:37</td>            '+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">19</td>'+
-'            <td colspan="3">11,099,049</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:55:49</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">79</td>'+
-'            <td colspan="3">11,099,030</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:55:41</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">7</td>'+
-'            <td colspan="3">11,098,951</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:55:41</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">7</td>'+
-'            <td colspan="3">11,098,951</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:55:41</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">7</td>'+
-'            <td colspan="3">11,098,951</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:55:41</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">7</td>'+
-'            <td colspan="3">11,098,951</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:55:41</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">7</td>'+
-'            <td colspan="3">11,098,951</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:55:41</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">7</td>'+
-'            <td colspan="3">11,098,951</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'          <tr style="height: 30px;">'+
-'            <td colspan="3">15:55:41</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">0</td>'+
-'            <td colspan="3">0.00</td>'+
-'            <td colspan="3">7</td>'+
-'            <td colspan="3">11,098,951</td>'+
-'            <td colspan="3">61.75</td>'+
-'            <td colspan="3">54,700</td>'+
-'            <td colspan="3">54,600</td>'+
-'          </tr>'+
-'      </table>'+
-'     </div>'+
-'     <div id="d_four" border="2" bordercolor="black" style="width: 525px; height: 180px; overflow: auto; float: right; background-color: #FBF8EF;" >'+
-'        <table id="tab4" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">'+
-'          <tr style="background-color: #EFEFFB;'+
-'          height: 30px;">'+
-'            <td colspan="2">시간별</td>'+
-'            <td colspan="2">가격별</td>'+
-'            <td colspan="2">차트</td>'+
-'            <td colspan="2">거래원</td>'+
-'            <td colspan="2">강도</td>'+
-'            <td colspan="2">추정</td>'+
-'          </tr>'+
-'          <tr style="background-color: #E0E6F8">'+
-'             <td colspan="2">시간</td>'+
-'             <td colspan="2">현재가</td>'+
-'             <td colspan="2">전일대비</td>'+
-'             <td colspan="2">체결량</td>'+
-'             <td colspan="2">거래량</td>'+
-'          </tr>'+
-'          <tr>'+
-'             <td colspan="2">15:57:37</td>'+
-'             <td colspan="2">54,700</td>'+
-'             <td colspan="2">0</td>'+
-'             <td colspan="2">19</td>'+
-'             <td colspan="2">11,099,049</td>'+
-'          </tr>'+
-'          <tr>'+
-'             <td colspan="2">15:55:49</td>'+
-'             <td colspan="2">54,700</td>'+
-'             <td colspan="2">0</td>'+
-'             <td colspan="2">79</td>'+
-'             <td colspan="2">11,099,030</td>'+
-'          </tr>'+
-'          <tr>'+
-'             <td colspan="2">15:55:41</td>'+
-'             <td colspan="2">54,700</td>'+
-'             <td colspan="2">0</td>'+
-'             <td colspan="2">7</td>'+
-'             <td colspan="2">11,098,951</td>'+
-'          </tr>'+
-'          <tr>'+
-'             <td colspan="2">15:55:41</td>'+
-'             <td colspan="2">54,700</td>'+
-'             <td colspan="2">0</td>'+
-'             <td colspan="2">7</td>'+
-'             <td colspan="2">11,098,951</td>'+
-'          </tr>'+
-'          <tr>'+
-'             <td colspan="2">15:55:41</td>'+
-'             <td colspan="2">54,700</td>'+
-'             <td colspan="2">0</td>'+
-'             <td colspan="2">7</td>'+
-'             <td colspan="2">11,098,951</td>'+
-'          </tr>'+
-'          <tr>'+
-'             <td colspan="2">15:55:41</td>'+
-'             <td colspan="2">54,700</td>'+
-'             <td colspan="2">0</td>'+
-'             <td colspan="2">7</td>'+
-'             <td colspan="2">11,098,951</td>'+
-'          </tr>'+
-'          <tr>'+
-'             <td colspan="2">15:55:41</td>'+
-'             <td colspan="2">54,700</td>'+
-'             <td colspan="2">0</td>'+
-'             <td colspan="2">7</td>'+
-'             <td colspan="2">11,098,951</td>'+
-'          </tr>'+
-'      </table>'+
-'     </div>'+
-'   </div>'+
-'</body>'
-	}
+	trading_mainbody : x=>{
+		return `<body style="width: auto; height: auto;">
+  <div id="main_div" border="2" bordercolor="black" style="width: 1500px; height: 600px; margin-left: 7%">
+     <div id="d_one" style="width: 975px; height: 300px; overflow: auto; background-color: white; float: left;">
+        <table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: white; text-align: center;" >
+               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">
+                 <td id="btn_mystock" colspan="3">관심</td>
+                 <td id="btn_lead" colspan="3">주도업종</td>
+                 <td id="btn_rank" colspan="3">순위</td>
+                 <td id="btn_balance" colspan="3">잔고</td>
+                 <td id="btn_da"colspan="3">예수금</td>
+                 <td id="btn_log" colspan="3">일지</td>
+               </tr>
+               <tr id="click_event2" style="width: 100%; height: 5%; background-color: white">
+                <td id="btn_lmystock" colspan="2">보유종목</td>
+                <td id="btn_attention" colspan="2">관심종목</td>
+               </tr>
+               <tr id="attention_title" border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <td colspan="3">종목명</td>
+                <td colspan="2">현재가</td>
+                <td colspan="2">대비</td>
+                <td colspan="2">등락률</td>
+                <td colspan="2">시가</td>
+                <td colspan="3">고가</td>
+                <td colspan="3">저가</td>
+                <td colspan="3">매도호가</td>
+                <td colspan="3">매수호가</td>
+                <td colspan="3">거래량</td>
+            </tr>
+               <tr id="attention_data" style="width: 100%;">
+                <td colspan="3" style="text-align: left;">보유종목명 data</td>
+                <td colspan="2" style="text-align: center;">현재가 data</td>
+                <td colspan="2" style="text-align: center;">대비 data</td>
+                <td colspan="2" style="text-align: center;">등락률 data</td>
+                <td colspan="2" style="text-align: center;">시가 data</td>
+                <td colspan="3" style="text-align: left;">고가 data</td>
+                <td colspan="3" style="text-align: left;">저가 data</td>
+                <td colspan="3" style="text-align: left;">매도호가 data</td>
+                <td colspan="3" style="text-align: left;">매수호가 data</td>
+                <td colspan="3" style="text-align: left;">거래량 data</td>
+          </tr>
+             </table>
+     </div>    
+     <div id="d_two" style="width: 525px; height: 600px; overflow: auto; background-color: white; float: right;">
+        <table id="tab2" border="1" bordercolor="black" style="width: 100%; height: 100%; text-align: center;">
+        <tr style="background-color: #EFEFFB">
+         <!-- 현재가 -->
+            <td>현재가</td>
+            <td>업종</td>
+            <td><input type="text" name="stockcode" value="종목명"></td>
+            <td><button>검색</button></td>
+            <td>종목코드</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">현재가</td>
+            <td colspan="2">현재가 data</td>
+            <td style="background-color: #E0E6F8">상한가</td>
+            <td>상한가 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">대비</td>
+            <td colspan="2">대비 data</td>
+            <td style="background-color: #E0E6F8">하한가</td>
+            <td>하한가 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">등락률</td>
+            <td colspan="2">등락률 data</td>
+            <td style="background-color: #E0E6F8">제한폭</td>
+            <td>제한폭 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">매도호가</td>
+            <td colspan="2">매도호가 data</td>
+            <td style="background-color: #E0E6F8">호가단위</td>
+            <td>호가단위 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">매수호가</td>
+            <td colspan="2">매수호가 data</td>
+            <td style="background-color: #E0E6F8">액면가</td>
+            <td>100(원)</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">시가</td>
+            <td colspan="2">시가 data</td>
+            <td style="background-color: #E0E6F8">대용가</td>
+            <td>대용가 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">고가</td>
+            <td colspan="2">고가 data</td>
+            <td style="background-color: #E0E6F8">자본금</td>
+            <td>자본금 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">저가</td>
+            <td colspan="2">저가 data</td>
+            <td style="background-color: #E0E6F8">총주식수</td>
+            <td>총주식수 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">전일종가</td>
+            <td colspan="2">전일종가 data</td>
+            <td style="background-color: #E0E6F8">외인한도</td>
+            <td>외인한도 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">전일거래량</td>
+            <td colspan="2">전일거래량 data</td>
+            <td style="background-color: #E0E6F8">외인가능</td>
+            <td>외인가능 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">거래량</td>
+            <td colspan="2">거래량 data</td>
+            <td style="background-color: #E0E6F8">외인취득</td>
+            <td>외인취득 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">거래대금</td>
+            <td colspan="2">거래대금 data</td>
+            <td style="background-color: #E0E6F8">외인매수</td>
+            <td>외인매수 data</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">시가총액</td>
+            <td colspan="2">시가총액 data</td>
+            <td style="background-color: #E0E6F8">일반(20%)</td>
+            <td>신용가능</td>
+          </tr>
+          <tr>
+            <td style="background-color: #E0E6F8">예상체결가</td>
+            <td colspan="2"> </td>
+            <td style="background-color: #E0E6F8">예상체결량</td>
+            <td> </td>
+          </tr>
+      </table>
+     </div>
+     <div id="d_three" style="width: 975px; height: 300px; overflow: auto; float: left; background-color: white">
+        <table id="tab3" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">
+          <tr style=" height: 5%; background-color: #EFEFFB;">
+            <td id="btn_time" colspan="2">시간별</td>
+            <td id="btn_day" colspan="2">일자별</td>
+            <td id="btn_buy" colspan="2">매수</td>
+            <td id="btn_sell" colspan="2">매도</td>
+            <td id="btn_correction" colspan="2">정정</td>
+            <td id="btn_cancle" colspan="2">취소</td>
+          </tr>
+          <tr style="height: 20px; background-color: #E0E6F8; ">
+            <td colspan="3">시간대별</td>
+            <td colspan="3">현재가</td>
+            <td colspan="3">전일대비</td>
+            <td colspan="3">등락률</td>
+            <td colspan="3">체결량</td>
+            <td colspan="3">거래량</td>
+            <td colspan="3">체결강도</td>
+            <td colspan="3">매도호가</td>
+            <td colspan="3">매수호가</td>
+          </tr>
+          <tr style="height: 30px; background-color: white">
+            <td colspan="3">시간 data</td>            
+            <td colspan="3">현재가 data</td>
+            <td colspan="3">전일대비 data</td>
+            <td colspan="3">등락률 data</td>
+            <td colspan="3">체결량 data</td>
+            <td colspan="3">거래량 data</td>
+            <td colspan="3">체결강도 data</td>
+            <td colspan="3">매도호가 data</td>
+            <td colspan="3">매수호가 data</td>
+          </tr>
+      </table>
+     </div>
+   </div>
+</body>`
+  },
+  trading_mystock : ()=>{
+    return `<table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: #FBF8EF; text-align: center;" >
+               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">
+                 <td id="btn_mystock" colspan="2">관심</td>
+                 <td id="btn_lead" colspan="2">주도업종</td>
+                 <td id="btn_rank" colspan="2">순위</td>
+                 <td id="btn_balance" colspan="2">잔고</td>
+                 <td id="btn_da"colspan="2">예수금</td>
+                 <td id="btn_log" colspan="2">일지</td>
+               </tr>
+               <tr id="click_event2" style="width: 100%; height: 5%;">
+                <!-- 보유종목 일떄 -->
+                <td id="btn_lmystock" colspan="2">보유종목</td>
+                <td id="btn_attention" colspan="2">관심종목</td>
+               </tr>
+               <tr id="attention_title" border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <td colspan="3">종목명</td>
+                <td colspan="2">현재가</td>
+                <td colspan="2">대비</td>
+                <td colspan="2">등락률</td>
+                <td colspan="2">시가</td>
+                <td colspan="3">고가</td>
+                <td colspan="3">저가</td>
+                <td colspan="3">매도호가</td>
+                <td colspan="3">매수호가</td>
+                <td colspan="3">거래량</td>
+            </tr>
+               <tr id="attention_data" style="width: 100%;">
+                <td colspan="3" style="text-align: left;">보유종목명 data</td>
+                <td colspan="2" style="text-align: center;">현재가 data</td>
+                <td colspan="2" style="text-align: center;">대비 data</td>
+                <td colspan="2" style="text-align: center;">등락률 data</td>
+                <td colspan="2" style="text-align: center;">시가 data</td>
+                <td colspan="3" style="text-align: left;">고가 data</td>
+                <td colspan="3" style="text-align: left;">저가 data</td>
+                <td colspan="3" style="text-align: left;">매도호가 data</td>
+                <td colspan="3" style="text-align: left;">매수호가 data</td>
+                <td colspan="3" style="text-align: left;">거래량 data</td>
+          </tr>
+             </table>`
+  },
+  trading_attention : ()=>{
+    return `<table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: #FBF8EF; text-align: center;" >
+               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">
+                 <td id="btn_lmystock" colspan="2">관심</td>
+                 <td id="btn_lead" colspan="2">주도업종</td>
+                 <td id="btn_rank" colspan="2">순위</td>
+                 <td id="btn_balance" colspan="2">잔고</td>
+                 <td id="btn_da"colspan="2">예수금</td>
+                 <td id="btn_log" colspan="2">일지</td>
+               </tr>
+               <tr id="click_event2" style="width: 100%; height: 5%;">
+                <!-- 관심종목 일떄 -->
+                <td id="btn_mystock" colspan="2">보유종목</td>
+                <td id="btn_attention" colspan="2">관심종목</td>
+               </tr>
+               <tr id="attention_title" border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <td colspan="3">종목명</td>
+                <td colspan="2">현재가</td>
+                <td colspan="2">대비</td>
+                <td colspan="2">등락률</td>
+                <td colspan="2">시가</td>
+                <td colspan="3">고가</td>
+                <td colspan="3">저가</td>
+                <td colspan="3">매도호가</td>
+                <td colspan="3">매수호가</td>
+                <td colspan="3">거래량</td>
+            </tr>
+               <tr id="attention_data" style="width: 100%;">
+                <td colspan="3" style="text-align: left;">관심종목명 data</td>
+                <td colspan="2" style="text-align: center;">현재가 data</td>
+                <td colspan="2" style="text-align: center;">대비 data</td>
+                <td colspan="2" style="text-align: center;">등락률 data</td>
+                <td colspan="2" style="text-align: center;">시가 data</td>
+                <td colspan="3" style="text-align: left;">고가 data</td>
+                <td colspan="3" style="text-align: left;">저가 data</td>
+                <td colspan="3" style="text-align: left;">매도호가 data</td>
+                <td colspan="3" style="text-align: left;">매수호가 data</td>
+                <td colspan="3" style="text-align: left;">거래량 data</td>
+          </tr>
+             </table>`
+  },
+  trading_lead : ()=>{
+    return `<table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: #FBF8EF; text-align: center;" >
+               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">
+                 <td id="btn_mystock" colspan="2">관심</td>
+                 <td id="btn_lead" colspan="2">주도업종</td>
+                 <td id="btn_rank" colspan="2">순위</td>
+                 <td id="btn_balance" colspan="2">잔고</td>
+                 <td id="btn_da"colspan="2">예수금</td>
+                 <td id="btn_log" colspan="2">일지</td>
+               </tr>
+               <tr id="click_event2" style="width: 100%; height: 5%;">
+                <td colspan="3">
+                <input type="radio" name="kospi" value="코스피">코스피
+                <input type="radio" name="kosdak" value="코스닥">코스닥
+                </td>
+                <td colspan="3"><input type="date"></td>
+                <td colspan="3"><input type="date"></td>
+               </tr>
+               <tr border="1"; bordercolor="black"; style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <!-- 주도업종, 코스피일때 화면 -->
+                <td colspan="3" rowspan="2">업종명</td>
+                <td colspan="4" style="background-color:skyblue">시작일</td>
+                <td colspan="4" style="background-color:pink">종료일</td>
+                <td colspan="3" rowspan="2">상승률</td>
+                </tr>
+                  <tr id="attention_title" border="1"; bordercolor="black"; style="width: 100%; height: 5%;  background-color: #E0E6F8;">
+                    <td colspan="2">시가총액(억원)</td>
+                    <td colspan="2">비중</td>
+                    <td colspan="2">시가총액(억원)</td>
+                    <td colspan="2">비중</td>
+                  </tr>
+                  <tr id="attention_data" style="width: 100%;">
+                    <td colspan="3" style="text-align: center;">업종명 data</td>
+                    <td colspan="2" style="text-align: center;">시작일 시가총액 data</td>
+                    <td colspan="2" style="text-align: center;">시작일 비중 data</td>
+                    <td colspan="2" style="text-align: center;">종료일 시가총액 data</td>
+                    <td colspan="2" style="text-align: center;">종료일 비중 data</td>
+                    <td colspan="3" style="text-align: center;">상승률 data</td>
+                </tr>
+             </table>`
+  },
+  trading_rank: ()=>{
+    return `<table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: #FBF8EF; text-align: center;" >
+               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">
+                 <td id="btn_mystock" colspan="2">관심</td>
+                 <td id="btn_lead" colspan="2">주도업종</td>
+                 <td id="btn_rank" colspan="2">순위</td>
+                 <td id="btn_balance" colspan="2">잔고</td>
+                 <td id="btn_da"colspan="2">예수금</td>
+                 <td id="btn_log" colspan="2">일지</td>
+               </tr>
+               <tr id="click_event2" style="width: 100%; height: 5%;">
+                <td colspan="4">
+                <input type="radio" name="kospi" value="코스피">코스피
+                <input type="radio" name="kosdak" value="코스닥">코스닥
+                </td>
+                <td colspan="2">
+                  <select name="choice">
+                    <option value="up">상승률</option>
+                  <option value="down">하락률</option>
+                  </select>
+                </td>
+               </tr>
+               <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <td colspan="2">종목명</td>
+                <td colspan="2">현재가</td>
+                <td colspan="2">전일대비</td>
+                <td colspan="2">등락률</td>
+                <td colspan="2">거래량</td>
+                <td colspan="2">기준가격</td>
+                <td colspan="2">상승률</td>
+                <td colspan="2">체결강도</td>
+            </tr>
+               <tr style="width: 100%;">
+                <td colspan="3" style="text-align: left;">종목명 data</td>
+                <td colspan="2" style="text-align: center;">현재가 data</td>
+                <td colspan="2" style="text-align: center;">전일대비 data</td>
+                <td colspan="2" style="text-align: center;">등락률 data</td>
+                <td colspan="2" style="text-align: center;">거래량 data</td>
+                <td colspan="3" style="text-align: left;">기준가격 data</td>
+                <td colspan="3" style="text-align: left;">상승률 data</td>
+                <td colspan="3" style="text-align: left;">체결강도 data</td>
+          </tr>
+             </table>`
+  },
+  trading_balance:()=>{
+    return `<table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: #FBF8EF; text-align: center;" >
+               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">
+                 <td id="btn_mystock" colspan="2">관심</td>
+                 <td id="btn_lead" colspan="2">주도업종</td>
+                 <td id="btn_rank" colspan="2">순위</td>
+                 <td id="btn_balance" colspan="2">잔고</td>
+                 <td id="btn_da"colspan="2">예수금</td>
+                 <td id="btn_log" colspan="2">일지</td>
+               </tr>
+               <tr id="click_event2" style="width: 100%; height: 5%;">
+                <td colspan="2">
+                  <select name="account">
+                    <option value="accounto">계좌번호</option>
+                  <option value="accountt">계좌번호2</option>
+                  </select>
+                </td>
+                <td colspan="2">이름</td>
+                <td colspan="2">비밀번호</td>
+                <td style="float: right;"><a href="#">조회</a></td>
+               </tr>
+               <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <td colspan="2">순자산총액</td>
+                <td colspan="2">순자산총액 data</td>
+                <td colspan="2">총평가금액</td>
+                <td colspan="2">총평가금액 data</td>
+                <td colspan="2">총평가손익</td>
+                <td colspan="2">총평가손익 data</td>
+                <td colspan="2">총수익률</td>
+                <td colspan="2">총수익률 data</td>
+            </tr>
+            <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <td colspan="2">종목명</td>
+                <td colspan="2">구분</td>
+                <td colspan="2">보유량</td>
+                <td colspan="2">주문가능</td>
+                <td colspan="2">평균단가</td>
+                <td colspan="2">현재가</td>
+                <td colspan="2">매입금액</td>
+                <td colspan="2">평가금액</td>
+                <td colspan="2">평가손익</td>
+            </tr>
+               <tr style="width: 100%;">
+                <td colspan="2">종목명 data</td>
+                <td colspan="2">구분 data</td>
+                <td colspan="2">보유량 data</td>
+                <td colspan="2">주문가능 data</td>
+                <td colspan="2">평균단가 data</td>
+                <td colspan="2">현재가 data</td>
+                <td colspan="2">매입금액 data</td>
+                <td colspan="2">평가금액 data</td>
+                <td colspan="2">평가손익 data</td>
+          </tr>
+             </table>`
+  },
+  trading_da:()=>{
+    return `<table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: #FBF8EF; text-align: center;" >
+               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">
+                 <td id="btn_mystock" colspan="2">관심</td>
+                 <td id="btn_lead" colspan="2">주도업종</td>
+                 <td id="btn_rank" colspan="2">순위</td>
+                 <td id="btn_balance" colspan="2">잔고</td>
+                 <td id="btn_da"colspan="2">예수금</td>
+                 <td id="btn_log" colspan="2">일지</td>
+               </tr>
+               <tr id="click_event2" style="width: 100%; height: 5%;">
+                <td colspan="2">
+                  <select name="account">
+                    <option value="accounto">계좌번호</option>
+                  <option value="accountt">계좌번호2</option>
+                  </select>
+                </td>
+                <td>이름</td>
+                <td style="float: right;"><a href="#">조회</a></td>
+               </tr>
+            <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <td>구분</td>
+                <td colspan="3">원화예수금</td>
+                <td colspan="3">추정현금성자산</td>
+                <td colspan="3">매매정산금</td>
+                <td colspan="4">변제필요금액</td>
+            </tr>
+            <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                <td>D+1일</td>
+                <td colspan="3">원화예수금 data</td>
+                <td colspan="3">추정현금성자산 data</td>
+                <td colspan="3">매매정산금 data</td>
+                <td colspan="4">당일 변제필요금액 data</td>
+            </tr>
+            <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                <td>D+2일</td>
+                <td colspan="3">원화예수금 data</td>
+                <td colspan="3">추정현금성자산 data</td>
+                <td colspan="3">매매정산금 data</td>
+                <td colspan="4">익일 변제필요금액 data</td>
+            </tr>
+               <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center; background-color: #E0E6F8;">
+                <td colspan="6">현금</td>
+                <td colspan="4">출금가능/대용</td>
+                <td colspan="4">D+2신용/대출</td>
+                <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                  <td colspan="3">D 현금성자산</td>
+                  <td colspan="3">현금성자산 data</td>
+                  <td colspan="2">출금가능금액</td>
+                  <td colspan="2">출금가능금액 data</td>
+                  <td colspan="2">융자총액</td>
+                  <td colspan="2">융자총액 data</td>
+                </tr>
+                <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                  <td colspan="3">+예수금</td>
+                  <td colspan="3">예수금 data</td>
+                  <td colspan="2">대용총액</td>
+                  <td colspan="2">대용총액 data</td>
+                  <td colspan="2">담보유지비율</td>
+                  <td colspan="2">담보유지비율 data</td>
+                </tr>
+                <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                  <td colspan="3">+CMA세후평가금액</td>
+                  <td colspan="3">CMA세후평가금액 data</td>
+                  <td colspan="4">미수없는금액</td>
+                  <td colspan="4">미수금</td>
+                </tr>
+                <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                  <td colspan="3">+외화예수금</td>
+                  <td colspan="3">외화예수금 data</td>
+                  <td colspan="2">미수없는금액</td>
+                  <td colspan="2">미수없는금액 data</td>
+                  <td colspan="2">위탁/선물옵션미수금</td>
+                  <td colspan="2">위탁/선물옵션미수금 data</td>
+                </tr>
+                <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                  <td colspan="3">-미수금및연체이자</td>
+                  <td colspan="3">미수금및연체이자 data</td>
+                  <td colspan="2">총주문가능금액(일반)</td>
+                  <td colspan="2">총주문가능금액(일반) data</td>
+                  <td colspan="2">미상환융자금</td>
+                  <td colspan="2">미상환융자금 data</td>
+                </tr>
+                <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                  <td colspan="3">  비저축예수금</td>
+                  <td colspan="3">비저축예수금 data</td>
+                  <td colspan="2">현금주문가능금액</td>
+                  <td colspan="2">현금주문가능금액 data</td>
+                  <td colspan="2">이자미납금</td>
+                  <td colspan="2">이자미납금 data</td>
+                </tr>
+             </table>`
+  },
+  trading_log:()=>{
+    return `<table id="tab1" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; background-color: #FBF8EF; text-align: center;" >
+               <tr id="click_event1" style="width: 100%; height: 5%; background-color: #EFEFFB">
+                 <td id="btn_mystock" colspan="2">관심</td>
+                 <td id="btn_lead" colspan="2">주도업종</td>
+                 <td id="btn_rank" colspan="2">순위</td>
+                 <td id="btn_balance" colspan="2">잔고</td>
+                 <td id="btn_da"colspan="2">예수금</td>
+                 <td id="btn_log" colspan="2">일지</td>
+               </tr>
+               <tr id="click_event2" style="width: 100%; height: 5%;">
+                <td colspan="2">
+                  <select name="account">
+                    <option value="accounto">계좌번호</option>
+                  <option value="accountt">계좌번호2</option>
+                  </select>
+                </td>
+                <td>이름</td>
+                <td>비밀번호</td>
+                <td colspan="2">
+                <input type="radio" name="day" value="당일">당일
+                <input type="radio" name="period" value="기간별">기간별
+                <td colspan="3"><input type="date"></td>
+                <td style="float: right;"><a href="#">조회</a></td>
+               </tr>
+            <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                <td colspan="2" style=" background-color: #E0E6F8;">금일 매수금액</td>
+                <td colspan="3">금일 매수금액 data</td>
+                <td colspan="2" style=" background-color: #E0E6F8;">예수금총액</td>
+                <td colspan="3">예수금총액 data</td>
+                <td colspan="2" style=" background-color: #E0E6F8;">총 매매금액</td>
+                <td colspan="2">총 매매금액 data</td>
+            </tr>
+            <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                <td colspan="2" style=" background-color: #E0E6F8;">금일 매도금액</td>
+                <td colspan="3">금일 매도금액 data</td>
+                <td colspan="2" style=" background-color: #E0E6F8;">D+1정산금액</td>
+                <td colspan="3">D+1정산금액 data</td>
+                <td colspan="2" style=" background-color: #E0E6F8;">총 손익금액</td>
+                <td colspan="2">총 손익금액 data</td>
+            </tr>
+               <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                <td colspan="2" style=" background-color: #E0E6F8;">금일 정산금액</td>
+                <td colspan="3">금일 정산금액 data</td>
+                <td colspan="2" style=" background-color: #E0E6F8;">D+2정산금액</td>
+                <td colspan="3">D+2정산금액 data</td>
+                <td colspan="2" style=" background-color: #E0E6F8;">총 수익률</td>
+                <td colspan="2">총 수익률 data</td>
+            </tr>
+                <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                  <td colspan="1" style=" background-color: #E0E6F8;">종목명</td>
+                  <td colspan="2" style=" background-color: pink;">매수량</td>
+                  <td colspan="2" style=" background-color: pink;">평균매입가</td>
+                  <td colspan="2" style=" background-color: skyblue;">매도량</td>
+                  <td colspan="2" style=" background-color: skyblue;">평균매도가</td>
+                  <td colspan="2" style=" background-color: #E0E6F8;">매매비용</td>
+                  <td colspan="2" style=" background-color: #E0E6F8;">손익금액</td>
+                  <td colspan="1" style=" background-color: #E0E6F8;">수익률</td>
+                </tr>
+                <tr border="1"; bordercolor="black";
+                  style="width: 100%; height: 5%; text-align: center;">
+                  <td colspan="1">종목명 data</td>
+                  <td colspan="2">매수량 data</td>
+                  <td colspan="2">평균매입가 data</td>
+                  <td colspan="2">매도량 data</td>
+                  <td colspan="2">평균매도가 data</td>
+                  <td colspan="2">매매비용 data</td>
+                  <td colspan="2">손익금액 data</td>
+                  <td colspan="1">수익률 data</td>
+                </tr>
+             </table>`
+  },
+  trading_time:()=>{
+    return `<table id="tab3" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">
+          <tr style=" height: 10px; background-color: #EFEFFB;">
+            <td id="btn_time" colspan="2">시간별</td>
+            <td id="btn_day" colspan="2">일자별</td>
+            <td id="btn_buy" colspan="2">매수</td>
+            <td id="btn_sell" colspan="2">매도</td>
+            <td id="btn_correction" colspan="2">정정</td>
+            <td id="btn_cancle" colspan="2">취소</td>
+          </tr>
+          <tr style="height: 20px; background-color: #E0E6F8; ">
+            <td colspan="3">시간대별</td>
+            <td colspan="3">현재가</td>
+            <td colspan="3">전일대비</td>
+            <td colspan="3">등락률</td>
+            <td colspan="3">체결량</td>
+            <td colspan="3">거래량</td>
+            <td colspan="3">체결강도</td>
+            <td colspan="3">매도호가</td>
+            <td colspan="3">매수호가</td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="3">시간 data</td>            
+            <td colspan="3">현재가 data</td>
+            <td colspan="3">전일대비 data</td>
+            <td colspan="3">등락률 data</td>
+            <td colspan="3">체결량 data</td>
+            <td colspan="3">거래량 data</td>
+            <td colspan="3">체결강도 data</td>
+            <td colspan="3">매도호가 data</td>
+            <td colspan="3">매수호가 data</td>
+          </tr>
+      </table>`
+  },
+  trading_day:()=>{
+    return `<table id="tab3" border="1" bordercolor="black" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">
+          <tr style=" height: 10px; background-color: #EFEFFB;">
+            <td id="btn_time" colspan="2">시간별</td>
+            <td id="btn_day" colspan="2">일자별</td>
+            <td id="btn_buy" colspan="2">매수</td>
+            <td id="btn_sell" colspan="2">매도</td>
+            <td id="btn_correction" colspan="2">정정</td>
+            <td id="btn_cancle" colspan="2">취소</td>
+          </tr>
+          <tr style="height: 20px; background-color: #E0E6F8; ">
+            <td colspan="3">일자별</td>
+            <td colspan="3">종가</td>
+            <td colspan="3">전일대비</td>
+            <td colspan="3">등락률</td>
+            <td colspan="3">거래량</td>
+            <td colspan="3">거래대금</td>
+            <td colspan="3">체결강도</td>
+            <td colspan="3">시가</td>
+            <td colspan="3">고가</td>
+            <td colspan="3">저가</td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="3">일자별 data</td>
+            <td colspan="3">종가 data</td>
+            <td colspan="3">전일대비 data</td>
+            <td colspan="3">등락률 data</td>
+            <td colspan="3">거래량 data</td>
+            <td colspan="3">거래대금 data</td>
+            <td colspan="3">체결강도 data</td>
+            <td colspan="3">시가 data</td>
+            <td colspan="3">고가 data</td>
+            <td colspan="3">저가 data</td>
+          </tr>
+      </table>`
+  },
+  trading_buy:()=>{
+    return `<table id="tab3" border="1" bordercolor="#E0E6F8" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">
+          <tr style=" height: 10px; background-color: #EFEFFB;">
+            <td id="btn_time" colspan="2">시간별</td>
+            <td id="btn_day" colspan="2">일자별</td>
+            <td id="btn_buy" colspan="2">매수</td>
+            <td id="btn_sell" colspan="2">매도</td>
+            <td id="btn_correction" colspan="2">정정</td>
+            <td id="btn_cancle" colspan="2">취소</td>
+          </tr>
+          <tr style="height: 5px; background-color: #E0E6F8;">
+            <td colspan="4">
+                  <select name="account">
+                    <option value="accounto">계좌번호</option>
+                  <option value="accountt">계좌번호2</option>
+                  </select>
+                </td>
+                <td>이름</td>
+                <td>비밀번호</td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="8">매수희망가</td>
+            <td colspan="1" style="background-color: pink">종목</td>
+            <td colspan="3" style="background-color: pink">
+              <select name="account">
+                <option value="stockcode">주식코드1</option>
+                <option value="stockcode">주식코드2</option>
+              </select>
+              <select name="account">
+                <option value="stockname">주식이름</option>
+              </select>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="2" style="background-color: #E0E6F8;">매수희망가</td>
+            <td colspan="6">매수희망가 data</td>
+            <td style="background-color: pink">구분</td>
+            <td colspan="3" style="background-color: pink">
+              <input type="radio" name="sprice" value="지정가">지정가
+              <input type="radio" name="mprice" value="시장가">시장가
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="8">매수가능금액 및 수량</td>
+            <td style="background-color: pink">조건</td>
+            <td colspan="3" style="background-color: pink">
+              <input type="radio" name="noop" value="noop">없음
+              <input type="radio" name="ioc" value="IOC">IOC
+              <input type="radio" name="fok" value="FOK">FOK
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="2" style="background-color: #E0E6F8;">최대매수금액</td>
+            <td colspan="2">최대매수금액data</td>
+            <td colspan="2" style="background-color: #E0E6F8;">최대매수수량</td>
+            <td colspan="2">최대매수수량data</td>
+            <td style="background-color: pink">수량</td>
+            <td colspan="3" style="background-color: pink"><input type="text">주</td>
+            
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="2" style="background-color: #E0E6F8;">미수없는금액</td>
+            <td colspan="2">미수없는금액data</td>
+            <td colspan="2" style="background-color: #E0E6F8;">미수없는수량</td>
+            <td colspan="2">미수없는수량data</td>
+            <td style="background-color: pink">단가</td>
+            <td colspan="3" style="background-color: pink"><input type="text">원</td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="8">매수 가능 금액 내용</td>
+            <td style="background-color: pink">번호</td>
+            <td colspan="3" style="background-color: pink"><input type="text">원</td>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="2" style="background-color: #E0E6F8;">총주문자산금액</td>
+            <td colspan="2">총주문자산금액data</td>
+            <td rowspan="2" colspan="2" style="background-color: #E0E6F8;">현금주문자산금액</td>
+            <td rowspan="2" colspan="2">현금주문자산금액data</td>
+            <td style="background-color: pink">금액</td>
+            <td colspan="3" style="background-color: pink"><input type="text">적용</td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="2" style="background-color: #E0E6F8;">가능수량계산단가</td>
+            <td colspan="2">가능수량계산단가data</td>
+            <td colspan="2" style="background-color: violet"><a id="btb_buycancle" href="#">전량취소</a></td>
+            <td colspan="2" style="background-color: red"><a id="btn_buying" href="#">매수</a></td>
+          </tr>
+      </table>`
+  },
+  trading_sell:()=>{
+    return `<table id="tab3" border="1" bordercolor="#E0E6F8" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">
+          <tr style=" height: 10px; background-color: #EFEFFB;">
+            <td id="btn_time" colspan="2">시간별</td>
+            <td id="btn_day" colspan="2">일자별</td>
+            <td id="btn_buy" colspan="2">매수</td>
+            <td id="btn_sell" colspan="2">매도</td>
+            <td id="btn_correction" colspan="2">정정</td>
+            <td id="btn_cancle" colspan="2">취소</td>
+          </tr>
+          <tr style="height: 5px; background-color: #E0E6F8;">
+            <td colspan="4">
+                  <select name="account">
+                    <option value="accounto">계좌번호</option>
+                  <option value="accountt">계좌번호2</option>
+                  </select>
+                </td>
+                <td>이름</td>
+                <td>비밀번호</td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="2" style="background-color: #E0E6F8;">총평가금액</td>
+            <td colspan="2">총평가금액data</td>
+            <td colspan="2" style="background-color: #E0E6F8;">총평가손익</td>
+            <td colspan="2">총평가손익data</td>
+            <td colspan="1" style="background-color: skyblue">종목</td>
+            <td colspan="3" style="background-color: skyblue">
+              <select name="account">
+                <option value="stockcode">주식코드1</option>
+                <option value="stockcode">주식코드2</option>
+              </select>
+              <select name="account">
+                <option value="stockname">주식이름</option>
+              </select>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="2" style="background-color: #E0E6F8;">순자산총액</td>
+            <td colspan="2">순자산총액data</td>
+            <td colspan="2" style="background-color: #E0E6F8;">총수익률</td>
+            <td colspan="2">총수익률data</td>
+            <td style="background-color: skyblue">구분</td>
+            <td colspan="3" style="background-color: skyblue">
+              <input type="radio" name="sprice" value="지정가">지정가
+              <input type="radio" name="mprice" value="시장가">시장가
+            </td>
+          </tr>
+          <tr style="height: 30px; background-color: #E0E6F8;">
+            <td colspan="3">종목명</td>
+            <td>보유량</td>
+            <td>주문가능</td>
+            <td>평균단가</td>
+            <td>평가손익</td>
+            <td>수익률</td>
+            <td style="background-color: skyblue">조건</td>
+            <td colspan="3" style="background-color: skyblue">
+              <input type="radio" name="noop" value="noop">없음
+              <input type="radio" name="ioc" value="IOC">IOC
+              <input type="radio" name="fok" value="FOK">FOK
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="3">종목명</td>
+            <td>보유량 data</td>
+            <td>주문가능 data</td>
+            <td>평균단가 data</td>
+            <td>평가손익 data</td>
+            <td>수익률 data</td>
+            <td style="background-color: skyblue">수량</td>
+            <td colspan="3" style="background-color: skyblue"><input type="text">주</td>
+            
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="3">종목명</td>
+            <td>보유량 data</td>
+            <td>주문가능 data</td>
+            <td>평균단가 data</td>
+            <td>평가손익 data</td>
+            <td>수익률 data</td>
+            <td style="background-color: skyblue">단가</td>
+            <td colspan="3" style="background-color: skyblue"><input type="text">원</td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="3">종목명</td>
+            <td>보유량 data</td>
+            <td>주문가능 data</td>
+            <td>평균단가 data</td>
+            <td>평가손익 data</td>
+            <td>수익률 data</td>
+            <td style="background-color: skyblue">번호</td>
+            <td colspan="3" style="background-color: skyblue"><input type="text">원</td>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="3">종목명</td>
+            <td>보유량 data</td>
+            <td>주문가능 data</td>
+            <td>평균단가 data</td>
+            <td>평가손익 data</td>
+            <td>수익률 data</td>
+            <td style="background-color: skyblue">금액</td>
+            <td colspan="3" style="background-color: skyblue"><input type="text">적용</td>
+          </tr>
+          <tr style="height: 30px;">
+            <td colspan="3">종목명</td>
+            <td>보유량 data</td>
+            <td>주문가능 data</td>
+            <td>평균단가 data</td>
+            <td>평가손익 data</td>
+            <td>수익률 data</td>
+            <td colspan="2" style="background-color: violet"><a id="btb_sellcancle" href="#">전량취소</a></td>
+            <td colspan="2" style="background-color: #2E9AFE;"><a id="btn_sell" href="#">매도</a></td>
+          </tr>
+      </table>`
+  },
+  trading_correction:()=>{
+    return `<table id="tab3" border="1" bordercolor="#E0E6F8" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">
+          <tr style=" height: 10px; background-color: #EFEFFB;">
+            <td id="btn_time" colspan="2">시간별</td>
+            <td id="btn_day" colspan="2">일자별</td>
+            <td id="btn_buy" colspan="2">매수</td>
+            <td id="btn_sell" colspan="2">매도</td>
+            <td id="btn_correction" colspan="2">정정</td>
+            <td id="btn_cancle" colspan="2">취소</td>
+          </tr>
+          <tr style="height: 5px; background-color: #E0E6F8;">
+            <td colspan="4">
+                  <select name="account">
+                    <option value="accounto">계좌번호</option>
+                  <option value="accountt">계좌번호2</option>
+                  </select>
+                </td>
+                <td>이름</td>
+                <td>비밀번호</td>
+          </tr>
+          <tr style="height: 30px; background-color: #E0E6F8;">
+            <td>주문번호</td>
+            <td colspan="3">종목명</td>
+            <td>매매구분</td>
+            <td>주문량</td>
+            <td>주문가</td>
+            <td>미체결</td>
+            <td colspan="1" style="background-color: #D8F6CE;">종목</td>
+            <td colspan="3" style="background-color: #D8F6CE;">
+              <select name="account">
+                <option value="stockcode">주식코드1</option>
+                <option value="stockcode">주식코드2</option>
+              </select>
+              <select name="account">
+                <option value="stockname">주식이름</option>
+              </select>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td style="background-color: #D8F6CE;">원번</td>
+            <td colspan="3" style="background-color: #D8F6CE;"><input type="text"></td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td style="background-color: #D8F6CE;">수량</td>
+            <td colspan="3" style="background-color: #D8F6CE;"><input type="text">
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td style="background-color: #D8F6CE;">단가</td>
+            <td colspan="3" style="background-color: #D8F6CE;"><input type="text">원</td></td>
+            
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td style="background-color: #D8F6CE;">번호</td>
+            <td colspan="3" style="background-color: #D8F6CE;"><input type="text"></td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td></td><td></td>
+            <td colspan="2" style="background-color: #04B486;"><a id="btn_correction" href="#">정정</a></td>
+          </tr>`
+  },
+  trading_cancle:()=>{
+    return `<table id="tab3" border="1" bordercolor="#E0E6F8" style="width: 100%; height: 100%; table-layout: fixed; text-align: center;">
+          <tr style=" height: 10px; background-color: #EFEFFB;">
+            <td id="btn_time" colspan="2">시간별</td>
+            <td id="btn_day" colspan="2">일자별</td>
+            <td id="btn_buy" colspan="2">매수</td>
+            <td id="btn_sell" colspan="2">매도</td>
+            <td id="btn_correction" colspan="2">정정</td>
+            <td id="btn_cancle" colspan="2">취소</td>
+          </tr>
+          <tr style="height: 5px; background-color: #E0E6F8;">
+            <td colspan="3">
+                  <select name="account">
+                    <option value="accounto">계좌번호</option>
+                  <option value="accountt">계좌번호2</option>
+                  </select>
+                </td>
+                <td>이름</td>
+                <td>비밀번호</td>
+          </tr>
+          <tr style="height: 30px; background-color: #E0E6F8;">
+            <td>주문번호</td>
+            <td colspan="3">종목명</td>
+            <td>매매구분</td>
+            <td>주문량</td>
+            <td>주문가</td>
+            <td>미체결</td>
+            <td colspan="1" style="background-color: #ECCEF5;">종목</td>
+            <td colspan="3" style="background-color: #ECCEF5;">
+              <select name="account">
+                <option value="stockcode">주식코드1</option>
+                <option value="stockcode">주식코드2</option>
+              </select>
+              <select name="account">
+                <option value="stockname">주식이름</option>
+              </select>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td style="background-color: #ECCEF5;">원번</td>
+            <td colspan="3" style="background-color: #ECCEF5;"><input type="text"></td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td style="background-color: #ECCEF5;">수량</td>
+            <td colspan="3" style="background-color: #ECCEF5;"><input type="text">
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td style="background-color: #ECCEF5;">번호</td>
+            <td colspan="3" style="background-color: #ECCEF5;"><input type="text"></td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>주문번호 data</td>
+            <td colspan="3">종목명 data</td>
+            <td>매매구분 data</td>
+            <td>주문량 data</td>
+            <td>주문가 data</td>
+            <td>미체결 data</td>
+            <td></td><td></td>
+            <td colspan="2" style="background-color: #04B486;"><a id="btn_correction" href="#">취소</a></td>
+          </tr>
+      </table>`
+  }
+
 };

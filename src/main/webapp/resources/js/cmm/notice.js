@@ -22,24 +22,28 @@ notice = (()=>{
 				$('#body_main').empty()
 				.html(notice_vue.noticeqna_body({css: $.css(), img: $.img()}))
 				.appendTo('#body_main')
+				onCreate()
 			})
 			$('#btn_noticecus').click(e=>{
 				e.preventDefault()
 				$('#body_main').empty()
 				.html(notice_vue.noticecus_body({css: $.css(), img: $.img()}))
 				.appendTo('#body_main')
+				onCreate()
 			})
 			$('#btn_noticeinquiry').click(e=>{
 				e.preventDefault()
 				$('#body_main').empty()
 				.html(notice_vue.noticeinquiry_body({css: $.css(), img: $.img()}))
 				.appendTo('#body_main')
+				onCreate()
 			})
 			$('#btn_notice').click(e=>{
 				e.preventDefault()
 				$('#body_main').empty()
 				.html(notice_vue.notice_body({css: $.css(), img: $.img()}))
 				.appendTo('#body_main')
+				onCreate()
 			})
 		})
 		

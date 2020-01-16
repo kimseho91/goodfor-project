@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Document</title>
+	<title>Good for</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
@@ -16,6 +16,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/auth.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/notice.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/admin.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/cmm/trading.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/auth_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/trading_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/notice_vue.js"></script>
