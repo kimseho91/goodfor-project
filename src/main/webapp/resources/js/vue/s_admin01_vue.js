@@ -364,9 +364,6 @@ s_admin01_vue = {
                     </div> <!-- container -->
 
                 </div> <!-- content -->
-                
-                
-                
 
                 <footer class="footer text-right">
                     2019 - 2020 © Goodfor. - www.Goodfor.com
