@@ -1,40 +1,82 @@
 var auth_vue = auth_vue || {}
 auth_vue = {
 	auth_body: x=>{
-		return '<header style="width: auto; height: 150px;">'+
-	'<!-- TOP ROW STARTS -->'+
-	'<div id="header_nav" style="float: right;">'+
-		'<span><a href="#">로그인</a></span>'+
-		'<span><a href="#">회원가입</a></span>'+
-	'</div>'+
-	'<div class="container" style="float: left;">'+
-		'<div class="">'+
-			'<div>'+
-				'<div class="logo"><a id="btn_main" href=""><img src="'+x.img+'/goodinfo.png" style="width: 250px; float: left;" alt=""></a></div>'+
-				'<div>'+
-					'<br>'+
-					'<div style="float: left; margin-left: 100px"><a id="btn_trading" href="">트레이딩</a></div>'+
-					'<div style="float: left; margin-left: 100px"><a id="btn_notice" href="">공지사항</a></div>'+
-					'<div style="float: left; margin-left: 100px"><a id="btn_admin" href="">관리자화면</a></div>	'+
-				'</div>'+
-			'</div>'+
-		'</div>'+
-	'</div>'+
-	'</header>'+
-	'<body style="width: auto; height: 900px;">'+
-		'<div id="body_main">'+
-			'<div class="main_nav" style="float: left;">'+
-				'<div class="korea"><a href="#"><img src="'+x.img+'/korea.jpg" style="width: 100px"; alt=""></a></div>'+
-				'<div class="america"><a href="#"><img src="'+x.img+'/america.jpg" style="width: 100px"; alt=""></a></div>'+
-				'<div class="china"><a href="#"><img src="'+x.img+'/china.jpg" style="width: 100px"; alt=""></a></div>'+
-				'<div class="japan"><a href="#"><img src="'+x.img+'/japan.jpg" style="width: 100px"; alt=""></a></div>'+
-			'</div>'+
-			'<div>'+
-				'<span><img src="'+x.img+'/KOSPI.png" alt="" style="width: 250px; margin-left: 80px; float: left;"></span>'+
-				'<span><img src="'+x.img+'/KOSPI.png" alt="" style="width: 250px; margin-left: 80px; float: left;"></span>'+
-			'</div>'+
-		'</div>'+
-	'</body>'
+		return `<div id="s-header">
+		
+			<div class="topbar">
+
+                <div class="topbar-left">
+                    <a href="index.html" class="logo">
+                        <span>
+                            GoodFor
+                        </span>
+                    </a>
+                </div>
+
+                <nav class="navbar-custom">
+					
+					
+                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
+	                    <li class="nav-link dropdown-toggle arrow-none waves-light waves-effect">
+							<div id="btn_trading" style="display:inline-block;width:200px;color:white;font-size:15px">계좌정보</div>
+							<div id="btn_notice" style="display:inline-block;width:200px;color:white;font-size:15px">주식정보</div>
+							<div id="btn_admin" style="display:inline-block;width:200px;color:white;font-size:15px">관리자</div>
+						</li>
+						
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" href="#">
+                                <i class="fi-bell noti-icon"></i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="fi-speech-bubble noti-icon"></i>
+                            </a>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <span class="ml-1"> . . . . <i class="mdi mdi-chevron-down"></i> </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown" x-placement="bottom-end" style="position: absolute; transform: translate3d(130px, 70px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h6 class="text-overflow m-0">Welcome !</h6>
+                                </div>
+
+                    <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fi-head"></i> <span>My Account</span>
+                                </a>
+                    <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fi-cog"></i> <span>Settings</span>
+                                </a>
+                    <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fi-help"></i> <span>Support</span>
+                                </a>
+                    <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fi-lock"></i> <span>Lock Screen</span>
+                                </a>
+                    <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fi-power"></i> <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+		</div>
+		<div id="body_main">
+			<h1>test2</h1>
+		</div>
+		<div id="s-footer">
+			<h1>test3</h1>
+		</div>`
 	}
 	
 };

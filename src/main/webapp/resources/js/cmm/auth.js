@@ -2,7 +2,7 @@
 var auth = auth || {};
 auth = (()=>{
 	const WHEN_ERR = '호출하는 JS파일을 찾지 못했습니다.'
-	let _, js, css, img, auth_vue_js,trading_vue_js,admin_vue_js,notice_vue_js,notice_js,admin_js
+	let _, js, css, img, auth_vue_js,trading_vue_js,admin_vue_js,notice_vue_js,notice_js,admin_js,s_admin_js,s_admin_vue_js
 	let init =()=> {
 		_=$.ctx()
 		js=$.js()
@@ -14,6 +14,8 @@ auth = (()=>{
 		notice_vue_js=js+'/vue/notice_vue.js'
 		notice_js=js+'/cmm/notice.js'
 		admin_js=js+'/cmm/admin.js'
+		s_admin_js=js+'/cmm/s_admin.js'
+		s_admin_vue_js=js+'/vue/s_admin01_vue.js'
 	}
 	
 	let onCreate =()=>{
@@ -22,6 +24,8 @@ auth = (()=>{
 			$.getScript(auth_vue_js),
 			$.getScript(trading_vue_js),
 			$.getScript(admin_vue_js),
+			$.getScript(s_admin_vue_js),
+			$.getScript(s_admin_js),
 			$.getScript(notice_vue_js),
 			$.getScript(notice_js)
 		).done(()=>{
@@ -48,9 +52,9 @@ auth = (()=>{
 			$('#btn_admin').click(e=>{
 				e.preventDefault()
 				$('#body_main').empty()
-				.html(admin_vue.admin_body({css: $.css(), img: $.img()}))
+				.html(s_admin01_vue.admin01_body({css: $.css(), img: $.img(), ctx: $.ctx()}))
 				.appendTo('#body_main')
-				admin.onCreate()
+				s_admin.onCreate()
 				
 			})
 		})
