@@ -1,8 +1,8 @@
 var auth_vue = auth_vue || {}
 auth_vue = {
 	auth_body: x=>{
-		return `<div id="s-header">
-		
+		return `
+		<div id="wrapper">		
 			<div class="topbar">
 
                 <div class="topbar-left">
@@ -14,9 +14,9 @@ auth_vue = {
                 </div>
 
                 <nav class="navbar-custom">
-					
-					
+                
                     <ul class="list-unstyled topbar-right-menu float-right mb-0">
+                    
 	                    <li class="nav-link dropdown-toggle arrow-none waves-light waves-effect">
 							<div id="btn_trading" style="display:inline-block;width:200px;color:white;font-size:15px">계좌정보</div>
 							<div id="btn_notice" style="display:inline-block;width:200px;color:white;font-size:15px">주식정보</div>
@@ -68,15 +68,21 @@ auth_vue = {
                             </div>
                         </li>
                     </ul>
+                    
                 </nav>
-            </div>
-		</div>
+                
+			</div>		<!-- End topbar-->
+		
 		<div id="body_main">
+		<div style="padding: 0 10px; margin-top: 70px ">
 			<h1>test2</h1>
-		</div>
+		</div></div>
+		
 		<div id="s-footer">
 			<h1>test3</h1>
-		</div>`
+		</div>
+	</div>
+	`	
 	}
 	
 };

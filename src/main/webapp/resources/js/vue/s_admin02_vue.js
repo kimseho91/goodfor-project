@@ -48,17 +48,7 @@ s_admin02_vue = {
 						<div id="calendar" class="fc fc-unthemed fc-ltr">
 						<div class="fc-toolbar">
 						
-							<div class="fc-left">
-								<div class="fc-button-group">
-									<button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left">
-										<span class="fc-icon fc-icon-left-single-arrow"></span></button>
-									<button type="button" class="fc-next-button fc-button fc-state-default fc-corner-right">
-										<span class="fc-icon fc-icon-right-single-arrow"></span></button>
-								</div>
-								<button type="button" class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled" disabled="">today</button>
-							</div>
 							
-							<div class="fc-right"><div class="fc-button-group"><button type="button" class="fc-month-button fc-button fc-state-default fc-corner-left fc-state-active">month</button><button type="button" class="fc-agendaWeek-button fc-button fc-state-default">week</button><button type="button" class="fc-agendaDay-button fc-button fc-state-default fc-corner-right">day</button></div></div>
 							
 						</div>
 						</div>

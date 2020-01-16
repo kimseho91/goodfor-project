@@ -43,15 +43,19 @@ s_admin = (()=>{
 			})
 			$('#s_admin_m3').click(e=>{
 				e.preventDefault()
+				$('#s_body_div01')
+				.empty()
+				.html(s_admin03_vue.admin03_body({css: $.css(), img: $.img(), ctx: $.ctx()}))
+				.appendTo('#s_body_div01')
+				onCreate()
+			})
+			$('#s_admin_m4').click(e=>{
+				e.preventDefault()
 				$('#body_main')
 				.empty()
 				.html(s_admin03_vue.admin03_body({css: $.css(), img: $.img(), ctx: $.ctx()}))
 				.appendTo('#body_main')
 				onCreate()
-			})
-			$('#s_admin_m4').click(e=>{
-				e.preventDefault()
-				$('body').empty().html(s_admin04_vue.admin04_body())
 			})
 		})
 		.fail()
