@@ -2,7 +2,7 @@
 var auth = auth || {};
 auth = (()=>{
 	const WHEN_ERR = '호출하는 JS파일을 찾지 못했습니다.'
-	let _, js, css, img, auth_vue_js,trading_vue_js,admin_vue_js,notice_vue_js,notice_js,admin_js
+	let _, js, css, img, auth_vue_js,trading_vue_js,admin_vue_js,notice_vue_js,notice_js,admin_js,trading_js
 	let init =()=> {
 		_=$.ctx()
 		js=$.js()
@@ -14,8 +14,8 @@ auth = (()=>{
 		notice_vue_js=js+'/vue/notice_vue.js'
 		notice_js=js+'/cmm/notice.js'
 		admin_js=js+'/cmm/admin.js'
-	}
-	
+		trading_js=js+'/cmm/trading.js'
+	}	
 	let onCreate =()=>{
 		init();
 		$.when(
@@ -23,7 +23,9 @@ auth = (()=>{
 			$.getScript(trading_vue_js),
 			$.getScript(admin_vue_js),
 			$.getScript(notice_vue_js),
-			$.getScript(notice_js)
+			$.getScript(notice_js),
+			$.getScript(admin_js),
+			$.getScript(trading_js)
 		).done(()=>{
 			setContentView()
 			$('#btn_main').click(e=>{
@@ -34,8 +36,9 @@ auth = (()=>{
 			$('#btn_trading').click(e=>{
 				e.preventDefault()
 				$('#body_main').empty()
-				.html(trading_vue.trading_body({css: $.css(), img: $.img()}))
+				.html(trading_vue.trading_mainbody({css: $.css(), img: $.img()}))
 				.appendTo('#body_main')
+				trading.onCreate()
 			})
 			$('#btn_notice').click(e=>{
 				e.preventDefault()
